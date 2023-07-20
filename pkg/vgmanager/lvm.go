@@ -98,13 +98,17 @@ func (vg VolumeGroup) Create(exec internal.Executor, pvs []string) error {
 		return fmt.Errorf("failed to create volume group. Physical volume list is empty")
 	}
 
-	args := []string{"--addtag=llama"}
-	args = append(args, vg.Name)
+	args := []string{vg.Name}
 	args = append(args, pvs...)
 
 	_, err := exec.ExecuteCommandWithOutputAsHost(vgCreateCmd, args...)
 	if err != nil {
 		return fmt.Errorf("failed to create volume group %q. %v", vg.Name, err)
+	}
+
+	_, err = exec.ExecuteCommandWithOutputAsHost("/usr/sbin/vgchange", []string{"--addtags=llama", vg.Name}...)
+	if err != nil {
+		return fmt.Errorf("failed to label volume group %q. %v", vg.Name, err)
 	}
 
 	return nil
