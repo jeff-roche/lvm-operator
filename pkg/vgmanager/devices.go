@@ -49,7 +49,7 @@ func (r *VGReconciler) addDevicesToVG(vgs []VolumeGroup, vgName string, devices 
 		cmd = "/usr/sbin/vgcreate"
 	}
 
-	args := []string{vgName}
+	args := []string{"--addtag", "llama", vgName}
 	for _, device := range devices {
 		if device.DevicePath != "" {
 			args = append(args, device.DevicePath)
