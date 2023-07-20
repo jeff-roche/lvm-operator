@@ -98,7 +98,8 @@ func (vg VolumeGroup) Create(exec internal.Executor, pvs []string) error {
 		return fmt.Errorf("failed to create volume group. Physical volume list is empty")
 	}
 
-	args := []string{vg.Name}
+	args := []string{"--addtag", "llama"}
+	args = append(args, vg.Name)
 	args = append(args, pvs...)
 
 	_, err := exec.ExecuteCommandWithOutputAsHost(vgCreateCmd, args...)
