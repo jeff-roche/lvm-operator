@@ -46,6 +46,7 @@ func (*CommandExecutor) ExecuteCommandWithOutput(command string, arg ...string) 
 func (*CommandExecutor) ExecuteCommandWithOutputAsHost(command string, arg ...string) (string, error) {
 	args := append([]string{"-m", "-u", "-i", "-n", "-p", "-t", "1", command}, arg...)
 	cmd := exec.Command(nsenterPath, args...)
+	fmt.Println("LLAMADEBUG " + cmd.String())
 	return runCommandWithOutput(cmd)
 }
 

@@ -104,11 +104,15 @@ func (vg VolumeGroup) Create(exec internal.Executor, pvs []string) error {
 	_, err := exec.ExecuteCommandWithOutputAsHost(vgCreateCmd, args...)
 	if err != nil {
 		return fmt.Errorf("failed to create volume group %q. %v", vg.Name, err)
+	} else {
+		fmt.Println("LLAMADEBUG Created VG")
 	}
 
 	_, err = exec.ExecuteCommandWithOutputAsHost("/usr/sbin/vgchange", []string{"--addtags=llama", vg.Name}...)
 	if err != nil {
 		return fmt.Errorf("failed to label volume group %q. %v", vg.Name, err)
+	} else {
+		fmt.Println("LLAMADEBUG Tagged VG")
 	}
 
 	return nil
