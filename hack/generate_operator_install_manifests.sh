@@ -10,12 +10,12 @@ cat <<EOF > ${manifests_dir}/namespace.yaml
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: openshift-storage
-  annotations:
-    workload.openshift.io/allowed: "management"
   labels:
     openshift.io/cluster-monitoring: "true"
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/warn: privileged
+  name: openshift-storage
 EOF
 
 # Create an operatorgroup manifest for the operator

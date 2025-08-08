@@ -18,6 +18,9 @@ cluster-config: image-digest-mirrors update-cluster-pull-secret
 cluster-catalog-config:
 	TARGET_VERSION=$(CANDIDATE_VERSION) CATALOG_SOURCE=$(CATALOG_SOURCE) ./hack/configure_cluster_for_testing.sh
 
+OPERATOR_CHANNEL ?= candidate-$(CANDIDATE_VERSION)
+
+
 .PHONY: install-operator
 install-operator:
-	OPERATOR_CHANNEL="candidate-$(CANDIDATE_VERSION)" CATALOG_SOURCE=$(CATALOG_SOURCE) ./hack/generate_operator_install_manifests.sh
+	OPERATOR_CHANNEL=$(OPERATOR_CHANNEL) CATALOG_SOURCE=$(CATALOG_SOURCE) ./hack/generate_operator_install_manifests.sh

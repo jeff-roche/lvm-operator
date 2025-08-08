@@ -39,9 +39,7 @@ repos:
     rev: v2.2.2
     hooks:
       - id: golangci-lint
-        entry: golangci-lint run --fix
-        args:
-          - "--timeout=20m"
+        entry: bash -c 'cd src && golangci-lint run --fix --timeout=20m'
         types: [go]
         language: golang
         require_serial: true
