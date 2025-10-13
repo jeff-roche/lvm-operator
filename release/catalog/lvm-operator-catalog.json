@@ -84,7 +84,8 @@
         "lvms-operator.v4.17.4",
         "lvms-operator.v4.17.5",
         "lvms-operator.v4.17.6"
-      ]
+      ],
+      "skipRange": ">=4.2.0 <4.17.7"
     }
   ],
   "name": "stable-4.17",
