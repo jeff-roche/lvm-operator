@@ -11,6 +11,7 @@ metadata:
       (".tekton/lvm-operator-catalog-pull-request.yaml".pathChanged() ||
       ".tekton/lvm-operator-catalog-push.yaml".pathChanged() ||
       ".tekton/images-mirror-set.yaml".pathChanged() ||
+      ".tekton/catalog-patching-build-pipeline.yaml".pathChanged() ||
       "release/catalog/***".pathChanged())
   creationTimestamp: null
   labels:
